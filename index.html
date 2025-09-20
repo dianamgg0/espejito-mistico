@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Espejito Místico</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0f0f1f, #000);
+      color: #fff;
+      text-align: center;
+      font-family: 'Cursive', serif;
+    }
+    .marco {
+      width: 350px;
+      height: 450px;
+      margin: 20px auto;
+      background: url("marco.png") no-repeat center;
+      background-size: contain;
+      position: relative;
+    }
+    .foto {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      border-radius: 15px;
+    }
+    .frase {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 20px;
+      color: #ffeefc;
+      text-shadow: 0 0 10px #d1aaff, 0 0 20px #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Espejito, espejito… tu reflejo revela mi divinidad ✨</h1>
+  <p>Sube tu imagen para recibir tu revelación</p>
+
+  <div class="marco" id="marco">
+    <img id="foto" class="foto" style="display:none;">
+  </div>
+
+  <input type="file" accept="image/*" onchange="mostrarImagen(event)">
+  <p class="frase" id="frase"></p>
+
+  <script>
+    const frases = [
+      "Tu luz interior brilla más que mil estrellas.",
+      "El espejo revela tu divinidad eterna.",
+      "Eres reflejo de la belleza infinita.",
+      "Tu esencia trasciende la forma."
+    ];
+    function mostrarImagen(event) {
+      const img = document.getElementById("foto");
+      img.src = URL.createObjectURL(event.target.files[0]);
+      img.style.display = "block";
+      // Frase mágica aleatoria
+      document.getElementById("frase").innerText = frases[Math.floor(Math.random()*frases.length)];
+    }
+  </script>
+</body>
+</html>
