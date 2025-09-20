@@ -3,63 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <title>Espejito Místico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
-      background: radial-gradient(circle at center, #0f0f1f, #000);
-      color: #fff;
+      background: radial-gradient(circle at top, #0d0d0d, #1a1a2e, #000);
+      color: white;
+      font-family: 'Great Vibes', cursive;
       text-align: center;
-      font-family: 'Cursive', serif;
+      padding: 20px;
+      overflow-x: hidden;
     }
-    .marco {
-      width: 350px;
-      height: 450px;
-      margin: 20px auto;
-      background: url("marco.png") no-repeat center;
-      background-size: contain;
+
+    h1 {
+      font-size: 3rem;
+      color: gold;
+      text-shadow: 0 0 10px rgba(255,215,0,0.8);
+      margin-bottom: 20px;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.6); }
+      50% { text-shadow: 0 0 30px rgba(255,215,0,1); }
+    }
+
+    .mirror-frame {
       position: relative;
+      width: 400px;
+      margin: auto;
     }
-    .foto {
+
+    .mirror-image {
+      width: 100%;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+    }
+
+    .reflection {
       position: absolute;
-      top: 15%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      border-radius: 15px;
+      top: 18%;
+      left: 22%;
+      width: 56%;
+      height: 64%;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: inset 0 0 20px rgba(255,255,255,0.3);
     }
-    .frase {
+
+    .reflection img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #magicText {
       margin-top: 20px;
-      font-style: italic;
-      font-size: 20px;
-      color: #ffeefc;
-      text-shadow: 0 0 10px #d1aaff, 0 0 20px #fff;
+      font-size: 2rem;
+      color: #ffdf80;
+      text-shadow: 0 0 15px rgba(255, 223, 128, 0.9);
+      display: none;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Botones mágicos */
+    .magic-btn {
+      background: linear-gradient(45deg, #ffd700, #ffae42);
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      margin: 15px;
+      font-size: 1.2rem;
+      color: #000;
+      cursor: pointer;
+      font-family: 'Great Vibes', cursive;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px rgba(255, 223, 128, 0.7);
+    }
+
+    .magic-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 223, 128, 1);
+    }
+
+    /* Destellos flotantes */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px white, 0 0 20px gold;
+      animation: sparkleMove 5s linear infinite;
+    }
+
+    @keyframes sparkleMove {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-300px) scale(0); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <h1>✨ Espejito, espejito… tu reflejo revela mi divinidad ✨</h1>
-  <p>Sube tu imagen para recibir tu revelación</p>
 
-  <div class="marco" id="marco">
-    <img id="foto" class="foto" style="display:none;">
+  <h1>✨ Espejito, espejito... tu reflejo revela mi divinidad ✨</h1>
+
+  <div class="mirror-frame">
+    <img src="Espejo.png" alt="Espejo mágico" class="mirror-image">
+    <div class="reflection">
+      <img id="uploadedImage" src="" alt="Tu reflejo">
+    </div>
+    <p id="magicText">✨ Tu reflejo revela tu divinidad ✨</p>
   </div>
 
-  <input type="file" accept="image/*" onchange="mostrarImagen(event)">
-  <p class="frase" id="frase"></p>
+  <div>
+    <input type="file" id="imageUpload" accept="image/*" style="display:none;">
+    <button class="magic-btn" onclick="document.getElementById('imageUpload').click();">
+      ✨ Sube tu imagen y descubre tu revelación ✨
+    </button>
+    <button class="magic-btn" id="downloadBtn" style="display:none;">💎 Descargar mi revelación 💎</button>
+  </div>
 
+  <!-- Destellos dinámicos -->
   <script>
-    const frases = [
-      "Tu luz interior brilla más que mil estrellas.",
-      "El espejo revela tu divinidad eterna.",
-      "Eres reflejo de la belleza infinita.",
-      "Tu esencia trasciende la forma."
-    ];
-    function mostrarImagen(event) {
-      const img = document.getElementById("foto");
-      img.src = URL.createObjectURL(event.target.files[0]);
-      img.style.display = "block";
-      // Frase mágica aleatoria
-      document.getElementById("frase").innerText = frases[Math.floor(Math.random()*frases.length)];
+    function createSparkles() {
+      for (let i = 0; i < 20; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = Math.random() * window.innerWidth + "px";
+        sparkle.style.top = (300 + Math.random() * 400) + "px";
+        sparkle.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 6000);
+      }
     }
+    setInterval(createSparkles, 1000);
+
+    // Mostrar imagen en espejo
+    document.getElementById('imageUpload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          document.getElementById('uploadedImage').src = event.target.result;
+          document.getElementById('magicText').style.display = 'block';
+          document.getElementById('downloadBtn').style.display = 'inline-block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Descargar revelación
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      const canvas = document.createElement('canvas');
+      const frame = document.querySelector('.mirror-frame');
+      canvas.width = frame.offsetWidth;
+      canvas.height = frame.offsetHeight;
+      const ctx = canvas.getContext('2d');
+
+      // Cargar imagen espejo
+      const frameImg = new Image();
+      frameImg.src = "Espejo.png";
+      frameImg.onload = () => {
+        ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+
+        // Cargar foto usuario
+        const userImg = new Image();
+        userImg.src = document.getElementById('uploadedImage').src;
+        userImg.onload = () => {
+          ctx.save();
+          ctx.beginPath();
+          ctx.ellipse(canvas.width/2, canvas.height/2, canvas.width*0.25, canvas.height*0.35, 0, 0, Math.PI*2);
+          ctx.clip();
+          ctx.drawImage(userImg, canvas.width*0.22, canvas.height*0.18, canvas.width*0.56, canvas.height*0.64);
+          ctx.restore();
+
+          // Texto mágico
+          ctx.fillStyle = "gold";
+          ctx.font = "30px 'Great Vibes', cursive";
+          ctx.textAlign = "center";
+          ctx.shadowColor = "rgba(255,215,0,0.8)";
+          ctx.shadowBlur = 10;
+          ctx.fillText("✨ Tu reflejo revela tu divinidad ✨", canvas.width/2, canvas.height - 20);
+
+          // Descargar
+          const link = document.createElement('a');
+          link.download = "mi-revelacion.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        };
+      };
+    });
   </script>
 </body>
 </html>
