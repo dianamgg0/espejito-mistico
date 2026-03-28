@@ -162,15 +162,17 @@
     document.getElementById('downloadBtn').addEventListener('click', function() {
       const canvas = document.createElement('canvas');
       const frame = document.querySelector('.mirror-frame');
-      canvas.width = frame.offsetWidth;
-      canvas.height = frame.offsetHeight;
-      const ctx = canvas.getContext('2d');
-
-      // Cargar imagen espejo
       const frameImg = new Image();
-      frameImg.src = "Espejo.png";
-      frameImg.onload = () => {
-        ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
+    frameImg.src = "Espejo.png";
+
+    frameImg.onload = () => {
+
+      const ratio = frameImg.height / frameImg.width;
+
+      canvas.width = 1000;
+      canvas.height = 1000 * ratio;
+
+      ctx.drawImage(frameImg, 0, 0, canvas.width, canvas.height);
 
         // Cargar foto usuario
         const userImg = new Image();
