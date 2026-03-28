@@ -197,7 +197,32 @@
       ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
       ctx.clip();
 
-      ctx.drawImage(userImg, x, y, w, h);
+      const imgRatio = userImg.width / userImg.height;
+const boxRatio = w / h;
+
+let drawWidth, drawHeight;
+let offsetX = 0;
+let offsetY = 0;
+
+if (imgRatio > boxRatio) {
+  // imagen más ancha
+  drawHeight = h;
+  drawWidth = h * imgRatio;
+  offsetX = (w - drawWidth) / 2;
+} else {
+  // imagen más alta
+  drawWidth = w;
+  drawHeight = w / imgRatio;
+  offsetY = (h - drawHeight) / 2;
+}
+
+ctx.drawImage(
+  userImg,
+  x + offsetX,
+  y + offsetY,
+  drawWidth,
+  drawHeight
+);
 
       ctx.restore();
 
