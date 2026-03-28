@@ -176,8 +176,9 @@
         const userImg = new Image();
         userImg.src = document.getElementById('uploadedImage').src;
         userImg.onload = () => {
-          const x = canvas.width * 0.185;
-          const y = canvas.height * 0.152;
+          ctx.save();
+          const x = canvas.width * 0.152;
+          const y = canvas.height * 0.185;
           const w = canvas.width * 0.69;
           const h = canvas.height * 0.55;
 
