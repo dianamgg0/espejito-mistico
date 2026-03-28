@@ -41,7 +41,7 @@
 
    .reflection { 
      position: absolute; 
-     top: 18.8%; 
+     top: 18.5%; 
      left: 15.2%; 
      width: 69%; 
      height: 55%; 
@@ -176,11 +176,25 @@
         const userImg = new Image();
         userImg.src = document.getElementById('uploadedImage').src;
         userImg.onload = () => {
-          ctx.save();
+          const x = canvas.width * 0.185;
+          const y = canvas.height * 0.152;
+          const w = canvas.width * 0.69;
+          const h = canvas.height * 0.55;
+
+          // centro del óvalo
+          const cx = x + w / 2;
+          const cy = y + h / 2;
+
+          // radios del óvalo (50% / 60%)
+          const rx = w * 0.5;
+          const ry = h * 0.6;
+
           ctx.beginPath();
-          ctx.ellipse(canvas.width*0.152, canvas.height*0.188, canvas.width*0.69, canvas.height*0.55, 0, 0, Math.PI*2);
+          ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
           ctx.clip();
-          ctx.drawImage(userImg, canvas.width*0.152, canvas.height*0.188, canvas.width*0.69, canvas.height*0.55);
+
+          ctx.drawImage(userImg, x, y, w, h);
+
           ctx.restore();
 
           // Texto mágico
