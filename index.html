@@ -41,8 +41,8 @@
 
    .reflection { 
      position: absolute; 
-     top: 19%; 
-     left: 15%; 
+     top: 18.8%; 
+     left: 15.2%; 
      width: 69%; 
      height: 55%; 
      overflow: hidden; 
@@ -178,9 +178,9 @@
         userImg.onload = () => {
           ctx.save();
           ctx.beginPath();
-          ctx.ellipse(canvas.width/2, canvas.height*0.51, canvas.width*0.32, canvas.height*0.3, 0, 0, Math.PI*2);
+          ctx.ellipse(canvas.width*0.152, canvas.height*0.188, canvas.width*0.69, canvas.height*0.55, 0, 0, Math.PI*2);
           ctx.clip();
-          ctx.drawImage(userImg, canvas.width*0.15, canvas.height*0.19, canvas.width*0.69, canvas.height*0.55);
+          ctx.drawImage(userImg, canvas.width*0.152, canvas.height*0.188, canvas.width*0.69, canvas.height*0.55);
           ctx.restore();
 
           // Texto mágico
