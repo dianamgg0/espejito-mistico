@@ -27,11 +27,11 @@
       50% { text-shadow: 0 0 30px rgba(255,215,0,1); }
     }
 
-    .mirror-frame {
-      position: relative;
-      width: 400px;
-      margin: auto;
-    }
+   .mirror-frame {
+  position: relative;
+  width: min(400px, 90vw);
+  margin: auto;
+}
 
     .mirror-image {
       width: 100%;
@@ -39,22 +39,26 @@
       filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
     }
 
-    .reflection {
-      position: absolute;
-      top: 18%;
-      left: 22%;
-      width: 50%;
-      height: 34%;
-      overflow: hidden;
-      border-radius: 50%;
-      box-shadow: inset 0 0 20px rgba(255,255,255,0.3);
-    }
+   .reflection {
+  position: absolute;
+  top: 24%;
+  left: 27%;
+  width: 46%;
+  height: 40%;
+  overflow: hidden;
 
-    .reflection img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  /* forma ovalada del espejo */
+  border-radius: 50% / 60%;
+
+  box-shadow: inset 0 0 25px rgba(255,255,255,0.35);
+}
+
+.reflection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
     #magicText {
       margin-top: 20px;
