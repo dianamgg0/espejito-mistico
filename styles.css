@@ -114,3 +114,39 @@ h1 {
   }
 
 }
+.light-rays {
+position: absolute;
+top: 15%;
+left: 14%;
+width: 70%;
+height: 52%;
+pointer-events: none;
+overflow: hidden;
+border-radius: 50% / 60%;
+}
+
+.light-rays::before {
+content: "";
+position: absolute;
+inset: -50%;
+
+background: linear-gradient(
+to top,
+rgba(255,255,255,0) 0%,
+rgba(255,255,255,0.15) 30%,
+rgba(255,255,255,0.35) 50%,
+rgba(255,255,255,0.15) 70%,
+rgba(255,255,255,0) 100%
+);
+
+animation: lightMove 4s linear infinite;
+}
+
+@keyframes lightMove {
+0% {
+transform: translateY(100%);
+}
+100% {
+transform: translateY(-100%);
+}
+}
