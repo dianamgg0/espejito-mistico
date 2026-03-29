@@ -93,6 +93,9 @@ const ratio = frame.height / frame.width;
 canvas.width = 1000;
 canvas.height = 1000 * ratio;
 
+ctx.fillStyle = "#000";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 ctx.drawImage(frame,0,0,canvas.width,canvas.height);
 
 const user = new Image();
