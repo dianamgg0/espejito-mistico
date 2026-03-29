@@ -33,11 +33,19 @@
       margin: auto;
     }
 
+    @media (max-width: 600px) {
+  .mirror-frame {
+    width: 96vw;
+    margin-top: 8px;
+  }
+}
+
     .mirror-image {
       width: 100%;
       display: block;
       filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
     }
+    
 
    .reflection { 
      position: absolute; 
@@ -111,7 +119,10 @@
 </head>
 <body>
 
-  <h1>✨ Espejito, espejito... tu reflejo revela mi divinidad ✨</h1>
+  <h1>
+✨ Espejito, espejito... <br>
+tu reflejo revela mi divinidad ✨
+</h1>
 
   <div class="mirror-frame">
     <img src="Espejo.png" alt="Espejo mágico" class="mirror-image">
