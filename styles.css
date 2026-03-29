@@ -45,11 +45,11 @@ h1 {
 .reflection {
   position: absolute;
 
-  top: 15.2%;
+  top: 18%;
   left: 14%;
 
-  width: 70%;
-  height: 52%;
+  width: 50%;
+  height: 70%;
 
   overflow: hidden;
   border-radius: 50% / 60%;
