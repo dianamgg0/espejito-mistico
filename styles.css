@@ -116,10 +116,10 @@ h1 {
 }
 .light-rays {
 position: absolute;
-top: 15%;
-left: 14%;
-width: 70%;
-height: 52%;
+top: 19.5%;
+left: 18.5%;
+width: 62%;
+height: 63%;
 pointer-events: none;
 overflow: hidden;
 border-radius: 50% / 60%;
