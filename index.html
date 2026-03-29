@@ -108,16 +108,15 @@ const h = canvas.height * 0.52;
 ctx.save();
 
 ctx.beginPath();
-ctx.ellipse(
-x + w/2,
-y + h/2,
-w/2*0.4,
-h/2*0.6,
-0,
-0,
-Math.PI*2
-);
 
+ctx.translate(x + w/2, y + h/2);
+
+/* MISMO VALOR QUE CSS */
+ctx.scale(1, 0.60);
+
+ctx.arc(0, 0, w/2, 0, Math.PI * 2);
+
+ctx.restore();
 ctx.clip();
 
 /* cover */
