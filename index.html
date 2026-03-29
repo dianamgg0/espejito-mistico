@@ -109,11 +109,16 @@ ctx.save();
 
 ctx.beginPath();
 
-ctx.translate(x + w/2, y + h/2);
+ctx.ellipse(
+x + w/2,
+y + h/2,
+w/2,
+h/2,
+0,
+0,
+Math.PI * 2
+);
 
-ctx.arc(0, 0, w/2, 0, Math.PI * 2);
-
-ctx.restore();
 ctx.clip();
 
 /* cover */
