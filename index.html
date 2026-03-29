@@ -35,15 +35,139 @@ tu reflejo revela mi divinidad ✨
 
 <input type="file" id="imageUpload" accept="image/*" hidden>
 
-<button class="magic-btn" onclick="imageUpload.click()">
+<button class="magic-btn" onclick="document.getElementById('imageUpload').click()">
 ✨ Sube tu imagen y descubre tu revelación ✨
 </button>
 
-<button class="magic-btn" id="downloadBtn">
+<button class="magic-btn" id="downloadBtn" style="display:none;">
 💎 Descargar mi revelación 💎
 </button>
 
 </div>
+
+<script>
+
+const upload = document.getElementById('imageUpload');
+const uploadedImage = document.getElementById('uploadedImage');
+const downloadBtn = document.getElementById('downloadBtn');
+const magicText = document.getElementById('magicText');
+
+/* SUBIR IMAGEN */
+
+upload.addEventListener('change', function(e){
+
+const file = e.target.files[0];
+
+if(!file) return;
+
+const reader = new FileReader();
+
+reader.onload = function(event){
+
+uploadedImage.src = event.target.result;
+
+magicText.style.display = "block";
+downloadBtn.style.display = "inline-block";
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+
+/* DESCARGAR */
+
+downloadBtn.addEventListener('click', function(){
+
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+
+const frame = new Image();
+frame.src = "Espejo.png";
+
+frame.onload = function(){
+
+const ratio = frame.height / frame.width;
+
+canvas.width = 1000;
+canvas.height = 1000 * ratio;
+
+ctx.drawImage(frame,0,0,canvas.width,canvas.height);
+
+const user = new Image();
+user.src = uploadedImage.src;
+
+user.onload = function(){
+
+const x = canvas.width * 0.14;
+const y = canvas.height * 0.15;
+const w = canvas.width * 0.70;
+const h = canvas.height * 0.52;
+
+ctx.save();
+
+ctx.beginPath();
+ctx.ellipse(
+x + w/2,
+y + h/2,
+w/2,
+h/2,
+0,
+0,
+Math.PI*2
+);
+
+ctx.clip();
+
+/* cover */
+
+const imgRatio = user.width / user.height;
+const boxRatio = w / h;
+
+let dw, dh, ox=0, oy=0;
+
+if(imgRatio > boxRatio){
+dh = h;
+dw = h * imgRatio;
+ox = (w - dw)/2;
+}else{
+dw = w;
+dh = w / imgRatio;
+oy = (h - dh)/2;
+}
+
+ctx.drawImage(user,x+ox,y+oy,dw,dh);
+
+ctx.restore();
+
+/* TEXTO */
+
+ctx.fillStyle="gold";
+ctx.font="60px 'Great Vibes'";
+ctx.textAlign="center";
+ctx.shadowBlur=15;
+
+ctx.fillText(
+"✨ Tu reflejo revela tu divinidad ✨",
+canvas.width/2,
+canvas.height - 30
+);
+
+/* DESCARGA */
+
+const link=document.createElement("a");
+link.download="mi-revelacion.png";
+link.href=canvas.toDataURL();
+link.click();
+
+};
+
+};
+
+});
+
+</script>
 
 </body>
 </html>
