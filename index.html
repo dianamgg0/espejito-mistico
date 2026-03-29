@@ -49,6 +49,21 @@ Sube tu imagen y descubre tu revelación
 
 <script>
 
+const frases = [
+"✨ Tu reflejo revela tu divinidad ✨",
+"💫 La luz que buscas vive en ti 💫",
+"🌟 Tu esencia ilumina el camino 🌟",
+"✨ Eres la magia que contemplas ✨",
+"💎 Tu alma brilla sin límites 💎",
+"🌙 Dentro de ti habita el misterio 🌙",
+"✨ Tu luz interior despierta hoy ✨",
+"🌟 Eres reflejo de lo eterno 🌟",
+"💫 La divinidad vive en tu mirada 💫",
+"✨ Tu espíritu resplandece ✨"
+];
+
+let fraseActual = "";  
+  
 const upload = document.getElementById('imageUpload');
 const uploadedImage = document.getElementById('uploadedImage');
 const downloadBtn = document.getElementById('downloadBtn');
@@ -67,6 +82,10 @@ const reader = new FileReader();
 reader.onload = function(event){
 
 uploadedImage.src = event.target.result;
+
+fraseActual = frases[Math.floor(Math.random() * frases.length)];
+
+magicText.textContent = fraseActual;
 
 magicText.style.display = "block";
 downloadBtn.style.display = "inline-block";
@@ -168,7 +187,7 @@ ctx.shadowBlur = 18;
 ctx.shadowOffsetX = 0;
 ctx.shadowOffsetY = 2;
 
-const text = "✨ Tu reflejo revela tu divinidad ✨";
+const text = fraseActual;
 const xText = canvas.width / 2;
 const yText = canvas.height - 25;
 
