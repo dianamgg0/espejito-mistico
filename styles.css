@@ -120,7 +120,7 @@ h1 {
 @media (max-width: 768px) {
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
   }
 
   .mirror-frame {
@@ -129,11 +129,11 @@ h1 {
 
   .magic-btn {
     width: 90%;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   #magicText {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
 }
